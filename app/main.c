@@ -11,10 +11,11 @@ int main() {
 
     fgets(input, 100, stdin);
 
-    if (input[strlen(input) - 1] = '\n') {
-      printf("%s: command not found\n", input);
+    int n = strlen(input);
+    input[n - 1] = '\0';
+    if (!strcmp(input, "exit 0"))
       exit(0);
-    }
+    printf("%s: command not found\n", input);
   }
   return 0;
 }
