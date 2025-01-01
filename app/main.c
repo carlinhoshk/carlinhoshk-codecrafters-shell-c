@@ -36,7 +36,11 @@ int main() {
         // Verificar comandos externos no PATH
         char *path = getenv("PATH");
         if (path) {
-          char *dir = strtok(path, ":");
+          char path_copy[1024];
+          strncpy(path_copy, path, sizeof(path_copy) - 1);
+          path_copy[sizeof(path_copy) - 1] = '\0';
+
+          char *dir = strtok(path_copy, ":");
           int found = 0;
           while (dir) {
             char full_path[200];
