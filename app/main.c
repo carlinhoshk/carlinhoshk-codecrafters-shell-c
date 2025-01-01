@@ -10,12 +10,15 @@ int main() {
     fflush(stdout);
 
     fgets(input, 100, stdin);
+    input[strcspn(input, "\r\n")] = 0;
 
-    int n = strlen(input);
-    input[n - 1] = '\0';
-    if (!strcmp(input, "exit 0"))
-      exit(0);
+    if (!strcmp(input, "exit 0")) {
+      return 0;
+    }
+    if (strncmp(input, "echo", strlen("echo")) == 0) {
+      printf("%s\n", input + 5);
+      continue;
+    }
     printf("%s: command not found\n", input);
   }
-  return 0;
 }
